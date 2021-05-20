@@ -24,7 +24,7 @@ pub fn string_calculator(term: &str) -> i32 {
 
 #[cfg(test)]
 mod tests_string_calculator {
-    use crate::string_calculator;
+    use crate::string_calculator::string_calculator;
 
     #[test]
     fn given_two_operands_when_add_then_added() {
