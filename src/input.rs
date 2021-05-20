@@ -35,7 +35,7 @@ impl Input {
         self.operands.next()
     }
 
-    pub fn operator(&self) -> Option<Operator> {
+    pub fn operator(&self) -> Option<&Operator> {
         self.operators.next()
     }
 
@@ -72,7 +72,7 @@ mod tests_input {
     #[test]
     fn when_operation_then_first_operation() {
         let i = Input::new("1 + 2");
-        assert_eq!(i.operator().unwrap(), Operator::PLUS);
+        assert_eq!(i.operator().unwrap(), &Operator::PLUS);
     }
 
     #[test]

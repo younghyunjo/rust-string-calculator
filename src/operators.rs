@@ -29,9 +29,9 @@ impl Operators {
         self.next_index.get() == self.operators.len()
     }
 
-    pub fn next(&self) -> Option<Operator> {
-        let operator = self.operators[self.next_index.get()];
+    pub fn next(&self) -> Option<&Operator> {
+        let operator = &self.operators[self.next_index.get()];
         self.next_index.set(self.next_index.get() + 1);
-        return Some(operator);
+        return Some(&operator);
     }
 }
