@@ -16,6 +16,7 @@ impl Operands {
                 Ok(_) => Some(o.unwrap()),
                 Err(_) => None
             })
+            .rev()
             .collect();
 
         Ok(Operands {
@@ -27,11 +28,13 @@ impl Operands {
     pub fn len(&self) -> usize {
         self.operands.len()
     }
+}
 
-    pub fn next(&self) -> Option<Operand> {
-        let operand = self.operands[self.next_index.get()];
-        self.next_index.set(self.next_index.get() + 1);
-        return Some(operand);
+impl Iterator for Operands {
+    type Item = Operand;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.operands.pop()
     }
 }
 
@@ -57,7 +60,7 @@ mod test_operands {
 
     #[test]
     fn given_operands_when_next_then_next_operand() {
-        let operands = Operands::new(&vec!["1", "2"]).unwrap();
+        let mut operands = Operands::new(&vec!["1", "2"]).unwrap();
         assert_eq!(operands.next().unwrap(), Operand::new_with_i32(1).unwrap());
         assert_eq!(operands.next().unwrap(), Operand::new_with_i32(2).unwrap());
     }

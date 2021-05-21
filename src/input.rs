@@ -31,7 +31,7 @@ impl Input {
         }
     }
 
-    pub fn operand(&self) -> Option<Operand> {
+    pub fn operand(&mut self) -> Option<Operand> {
         self.operands.next()
     }
 
@@ -58,20 +58,20 @@ mod tests_input {
 
     #[test]
     fn when_operand_then_first_operand() {
-        let i = Input::new("1 + 2");
+        let mut  i = Input::new("1 + 2");
         assert_eq!(i.operand().unwrap(), Operand::new_with_i32(1).unwrap());
     }
 
     #[test]
     fn when_operand_two_times_then_second_operand() {
-        let i = Input::new("1 + 2");
+        let mut i = Input::new("1 + 2");
         assert_eq!(i.operand().unwrap(), Operand::new_with_i32(1).unwrap());
         assert_eq!(i.operand().unwrap(), Operand::new_with_i32(2).unwrap());
     }
 
     #[test]
     fn when_operation_then_first_operation() {
-        let i = Input::new("1 + 2");
+        let  i = Input::new("1 + 2");
         assert_eq!(i.operator().unwrap(), &Operator::PLUS);
     }
 

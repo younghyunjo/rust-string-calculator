@@ -2,7 +2,7 @@ use crate::input::Input;
 use crate::operand::Operand;
 
 pub fn string_calculator(term: &str) -> i32 {
-    let input = Input::new(term);
+    let mut input = Input::new(term);
 
 
     let mut operand0 = input.operand().unwrap();
