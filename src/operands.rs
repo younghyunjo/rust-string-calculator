@@ -1,9 +1,7 @@
 use crate::operand::Operand;
-use std::cell::Cell;
 
 pub struct Operands {
     operands: Vec<Operand>,
-    next_index: Cell<usize>,
 }
 
 type OperandsIntError = u32;
@@ -21,7 +19,6 @@ impl Operands {
 
         Ok(Operands {
             operands,
-            next_index: Cell::new(0),
         })
     }
 

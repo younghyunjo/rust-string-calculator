@@ -1,8 +1,15 @@
-use crate::input::Input;
-use crate::operand::Operand;
+
+
+mod input;
+mod operand;
+mod operators;
+mod operands;
+mod operator;
+
+
 
 pub fn string_calculator(term: &str) -> i32 {
-    let mut input = Input::new(term);
+    let mut input = input::Input::new(term);
 
 
     let mut operand0 = input.operand().unwrap();
@@ -16,7 +23,7 @@ pub fn string_calculator(term: &str) -> i32 {
             return operand0.num();
         }
 
-        operand0 = Operand::new_with_i32(operator.unwrap().calculate(operand0, operand1.unwrap())).unwrap();
+        operand0 = operand::Operand::new_with_i32(operator.unwrap().calculate(operand0, operand1.unwrap())).unwrap();
     }
 
     operand0.num()
@@ -24,7 +31,7 @@ pub fn string_calculator(term: &str) -> i32 {
 
 #[cfg(test)]
 mod tests_string_calculator {
-    use crate::string_calculator::string_calculator;
+    use super::*;
 
     #[test]
     fn given_two_operands_when_add_then_added() {
